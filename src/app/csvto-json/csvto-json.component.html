@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1 class="display-1">Convert CSV to JSON
+    </h1>
+    <p class="lead">Paste your CSV below and we will convert it to JSON instantly.</p>
+  </div>
+</div>
+<div class="row ">
+  <div class="col-md-6">
+
+    <h4><span class="badge badge-primary">1</span>Paste your CSV below </h4>
+
+  </div>
+  <div class="col-md-6">
+    <button type="button" class="btn btn-outline-primary" (click)="CSVDemoData()">CSV Object Example</button>
+
+  </div>
+</div>
+<div class="row ">
+  <div class="col">
+    <div class="form-group">
+      <textarea class="form-control" [(ngModel)]="data">Test</textarea>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row ">
+  <div class="col">
+    <div class="form-group">
+      <h4><span class="badge badge-primary">2</span>Preview the output below:</h4>
+    </div>
+<app-previewdata *ngIf="data" [JSONstring]="data|csvtojson|jSONparse"></app-previewdata>
+  </div>
+
+  <!-- <app-previewdata  [data]="data|csvtojson"></app-previewdata> -->
+</div>
+<div class="row  top-buffer">
+  <div class="col">
+    <div class="form-group">
+
+    </div>
+    <h4><span class="badge badge-primary">3</span>Export your data to JSON</h4>
+
+    <!-- <button type="button" class="btn btn-outline-primary btn-lg btn-block"
+      [ngClass]="(data|validjson)?'btn btn-outline-success':'btn btn-outline-danger'"
+      [disabled]="!(data|validjson)">Export</button> -->
+      <textarea class="form-control" [value]="data|csvtojson"></textarea>
+
+  </div>
+
+</div>

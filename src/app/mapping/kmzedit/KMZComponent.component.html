@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>KMZ Editor</h1>
+      <p>Drag and drop your KMZ file to begin!</p>
+    </div>
+    <div class="col">
+      <app-fileupload [(files)]=files ></app-fileupload>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="map" id="map" #mapElement></div>
+
+    </div>
+  </div>
+</div>

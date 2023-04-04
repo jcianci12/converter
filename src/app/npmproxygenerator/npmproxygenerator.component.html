@@ -1,0 +1,79 @@
+<div class="container overflow-hidden">
+  <div class="row row gy-5">
+    <div class="col shadow-sm p-3 mb-5 bg-body rounded">
+      <h1>NPM Corporate proxy configuration helper</h1>
+
+      <p>
+        If you are experiencing issues with running npm i or npm install as well
+        as running ng new [myapp] then this could be the solution for you👍
+      </p>
+      <p>
+        Enter the following fields and copy the resulting string into a terminal
+        to set up your npm proxy.
+      </p>
+
+      <p>
+        ⚡Note: You may need to encode the backslash with %5c per this post on
+        stack overflow:
+        <a
+          href="https://stackoverflow.com/questions/25660936/using-npm-behind-corporate-proxy-pac"
+          >using-npm-behind-corporate-proxy-pac</a
+        >
+      </p>
+    </div>
+  </div>
+
+  <br />
+  <div class="row">
+    <div class="col">
+      <form class="example-form">
+        <div
+          *ngFor="
+            let property of configuration | keyvalue;
+            trackBy: trackByIndex
+          "
+        >
+          <mat-form-field
+            class="example-full-width"
+            appearance="fill"
+            style="width: 100%"
+          >
+            <mat-label>{{ property.key }}</mat-label>
+            <input
+              matInput
+              placeholder=""
+              [value]="property.value"
+              (keyup)="changevalue(property.key, $event)"
+            />
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <div class="">
+        <div class="">
+          <div class="row">
+            <p>
+              You can run these commands in bash or powershell 💻 depending on how
+              you have things set up 😉
+            </p>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Output</mat-label>
+              <textarea matInput>{{
+                configuration | npmconfigclipboardstring
+              }}</textarea>
+            </mat-form-field>
+            <button mat-button color="primary"
+              [cdkCopyToClipboard]="
+                configuration | npmconfigclipboardstring | json
+              "
+            >
+              Copy to clipboard
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{ configuration | json }}
+</div>

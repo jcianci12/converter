@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col">
+    <div class="jumbotron">
+  <h1 class="display-4">Recipe Converter</h1>
+  <p class="lead">Enter your ingredients, the amount for each ingredient, and then set the multiplier to see the new ingredients
+    amount.</p>
+  <hr class="my-4">
+  <p class="lead">
+  </p>
+</div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <button mat-raised-button [color]="'primary'" (click)="addIngredient()">Add ingredient</button>
+
+
+      </div>
+      <div class="col">
+        <mat-form-field style="width: 100%;">
+          <mat-label>
+            Recipe Multiplier
+          </mat-label>
+          <input type="number" matInput [(ngModel)]=ratio>
+
+        </mat-form-field>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h2>Original recipe</h2>
+    <div *ngFor="let item of recipe.ingredients; let i =index" class="row">
+      <app-ingredient [ingredient]=item (updateIngredient)="updateItem($event,i)" (deleteIngredient)="removeIngredient(i)"></app-ingredient>
+    </div>
+  </div>
+  <div class="col">
+    <h2>New recipe</h2>
+    <div *ngFor="let item of recipe.ingredients|recipePipe:ratio" class="row">
+      <app-ingredient [ingredient]=item [readonly]=true></app-ingredient>
+    </div>
+  </div>
+
+</div>

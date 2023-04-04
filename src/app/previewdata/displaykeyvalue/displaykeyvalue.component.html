@@ -1,0 +1,60 @@
+<table class="table">
+    <ng-container *ngIf="data|isnull; else elseTemplate">
+
+    </ng-container>
+    <ng-template #elseTemplate>
+        <!-- If the data is structured with a common property -->
+        <ng-container *ngIf="(data|toheader)?.length>1; else elseTemplate">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th *ngFor="let item of (data|toheader)">
+    
+                        <app-displayobject [data]=item></app-displayobject>
+                        {{item}}
+                    </th>
+                </tr>
+    
+    
+    
+    
+               
+            </thead>
+            <tbody>
+                 <tr *ngFor="let row of data|totable;let i = index">
+                    <td>{{i}}</td>
+                    <td *ngFor="let cell of row">
+                        {{cell}}
+                    </td>
+    
+                </tr>
+            </tbody>
+            
+
+
+
+
+        </ng-container>
+        <ng-template #elseTemplate>
+            <ng-container *ngIf="data|isstring">
+                <tr>
+                    <td>{{data}}</td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="data|isobject">
+                <app-displayobject [data]=data|keyvalue></app-displayobject>
+
+            </ng-container>
+            <ng-container *ngIf="data|isarray">
+
+                <!-- get the common key -->
+                <tr *ngFor="let arrayitem of data">
+
+
+                    <app-displaykeyvalue [data]="arrayitem"></app-displaykeyvalue>
+                </tr>
+            </ng-container>
+        </ng-template>
+
+    </ng-template>
+</table>

@@ -1,0 +1,49 @@
+<ng-container *ngIf="data|isarray">
+
+<!-- data doesnt share a common key -->
+    <ng-container *ngFor="let keyval of (data)">
+
+        <tr>
+            <th>{{keyval.key}}</th>
+        </tr>
+        <tr *ngIf="!(keyval.value|isobject)">
+
+                <td>
+                    {{keyval.value}}
+                </td>
+
+
+        </tr>
+        <td>
+            <!-- {{keyval.value|keyvalue|json}} -->
+            <ng-container *ngFor="let subkeyval of keyval.value|keyvalue">
+
+
+                    <tr>
+                        <th  *ngFor="let header of (data|toheader)">{{header}}</th>
+                    </tr>
+                    <tr>
+                        <td>{{subkeyval.key}}</td>
+                    </tr>
+                    <tr *ngIf="subkeyval?.value|isstring">
+                        <td>{{subkeyval.value}}</td>
+                    </tr>
+                    <!-- <ng-container *ngIf="subkeyval.value|isarray">array</ng-container> -->
+
+                    <ng-container *ngIf="subkeyval.value|isobject">
+                        <app-displaykeyvalue [data]="subkeyval.value"></app-displaykeyvalue>
+                    </ng-container>
+                    <ng-container *ngIf="(subkeyval.value|isarray)">
+                        <tr *ngFor="let arrayitem  of $any(subkeyval.value) ">
+
+                            <app-displaykeyvalue [data]="arrayitem"></app-displaykeyvalue>
+                        </tr>
+                    </ng-container>
+
+
+            </ng-container>
+        </td>
+
+
+    </ng-container>
+</ng-container>

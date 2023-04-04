@@ -11,11 +11,12 @@ export class NavbarComponent {
 
   links = [
     { title: 'Json to CSV', fragment: 'jsontocsv' },
-    { title: 'CSV to JSON', fragment: 'csvtojson' }
-
+    { title: 'CSV to JSON', fragment: 'csvtojson' },
   ];
+  rootlinks = [{ title: 'NPM Proxy config generator', fragment: 'npmproxgen' },
+  { title: 'Recipe converter', fragment: 'recipeconverter' }]
 
-  constructor(public route: ActivatedRoute) {}
+  constructor(public route: ActivatedRoute) { }
 
 
 }

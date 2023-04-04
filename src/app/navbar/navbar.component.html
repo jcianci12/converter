@@ -19,12 +19,10 @@
 
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="npmproxgen">NPM Proxy config generator</a>
+        <li class="nav-item" *ngFor="let item of rootlinks">
+          <a class="nav-link" [routerLink]="item.fragment" >{{item.title}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="recipeconverter">Recipe converter</a>
-        </li>
+
       </ul>
       <span class="navbar-text">
         <a href='https://ko-fi.com/F1F06FTJU' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
